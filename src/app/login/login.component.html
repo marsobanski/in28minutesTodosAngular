@@ -1,0 +1,20 @@
+<h1>Login</h1>
+
+
+<div class="container">
+    <div *ngIf='invalidLogin' class="alert alert-warning">
+        {{errorMessage}}
+    </div>
+
+    <div>
+        <!-- [(ngModel)]="username" - two-way-data-binding, gdzie username jest ciągle pobierane z komponentu i zmienia się wraz ze zmianą username w komponencie -->
+        Username: <input type="text" name="username" [(ngModel)]="username">
+        Password: <input type="password" name="password" [(ngModel)]="password">
+
+
+        <!-- Username: {{username}} -->
+
+        <!-- syntax eventów: (event) = whatMethodShouldBeCalled() -->
+        <button (click)=handleLogin() class="btn btn-success">Login</button>
+    </div>
+</div>
