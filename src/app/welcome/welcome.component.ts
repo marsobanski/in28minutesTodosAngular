@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { WelcomeDataService } from '../service/data/welcome-data.service';
 // import { AppComponent } from '../app.component';
 
 @Component({
@@ -18,14 +19,21 @@ export class WelcomeComponent implements OnInit {
   //public SpringBootFirstApplication {}
   //słowo kluczowe "contructor"
   //ActivatedRoute żeby pobierało z obecnego adresu
-  constructor(private route : ActivatedRoute) { }
+  constructor(
+    private route : ActivatedRoute,
+    private service : WelcomeDataService) { }
 
   //void init() {}
   //deklaracja typu dla metody: "ngOnInit() : typ"
   ngOnInit() {
-    console.log(this.message)
+    // console.log(this.message)
     // console.log(this.route.snapshot.params['name'])
     this.username = this.route.snapshot.params['name']
+  }
+
+  getWelcomeMessage() {
+    console.log(this.service.executeHelloWorldBeanService())
+    // console.log("get welcome message")
   }
 
 }
