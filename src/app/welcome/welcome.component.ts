@@ -14,10 +14,10 @@ import { WelcomeDataService } from '../service/data/welcome-data.service';
 export class WelcomeComponent implements OnInit {
 
   message = 'Some Welcome Message'
+  welcomeMessageFromService:string
+  errorMessage:string
   username = ''
 
-  //public SpringBootFirstApplication {}
-  //słowo kluczowe "contructor"
   //ActivatedRoute żeby pobierało z obecnego adresu
   constructor(
     private route : ActivatedRoute,
@@ -26,14 +26,27 @@ export class WelcomeComponent implements OnInit {
   //void init() {}
   //deklaracja typu dla metody: "ngOnInit() : typ"
   ngOnInit() {
-    // console.log(this.message)
-    // console.log(this.route.snapshot.params['name'])
+    
     this.username = this.route.snapshot.params['name']
   }
 
-  getWelcomeMessage() {
-    console.log(this.service.executeHelloWorldBeanService())
-    // console.log("get welcome message")
+  // metoda odpowiadająca za całość powitania przy logowaniu
+  getWelcomeMessageWithParameter() {
+    this.service.executeHelloWorldBeanServiceWithPathVariable(this.username).subscribe(
+      response => this.handleSuccesfullResponse(response),
+      error => this.handleErrorResponse(error)
+    )
+  }
+
+  // metoda zwracająca info po zalogowaniu
+  handleSuccesfullResponse(response) {
+    this.welcomeMessageFromService = response.message
+    
+  }
+
+  // metoda zwracająca info przy Exception
+  handleErrorResponse(error) {
+    this.errorMessage = error.error.message
   }
 
 }

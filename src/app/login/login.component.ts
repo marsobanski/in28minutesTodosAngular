@@ -9,7 +9,7 @@ import { HardcodedAuthenticationService } from '../service/hardcoded-authenticat
 })
 export class LoginComponent implements OnInit {
 
-  username = 'marcin'
+  name = 'marcin'
   password = ''
   errorMessage = 'Invalid Credentials'
   invalidLogin = false
@@ -22,11 +22,11 @@ export class LoginComponent implements OnInit {
   }
 
   handleLogin() {
-    // console.log(this.username)
+    // console.log(this.name)
     // console.log(this.password)
-    if(this.hardcodedAthenticationServeice.authenticate(this.username, this.password)) {
-      //redirect to welcome page, gives this.username as parameter
-      this.router.navigate(['welcome', this.username])
+    if(this.hardcodedAthenticationServeice.authenticate(this.name, this.password)) {
+      //redirect to welcome page, gives this.name as parameter
+      this.router.navigate(['welcome', this.name])
       this.invalidLogin = false
     }else{
       this.invalidLogin = true
